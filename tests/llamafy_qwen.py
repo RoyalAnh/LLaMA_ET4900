@@ -1,5 +1,5 @@
 # Converts the Qwen models in the same format as LLaMA2.
-# Usage: python llamafy_qwen.py --input_dir input --output_dir output --shard_size 10GB
+# python llamafy_qwen.py --input_dir input --output_dir output --shard_size 10GB
 
 import os
 import fire

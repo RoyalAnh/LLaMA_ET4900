@@ -1,6 +1,9 @@
-# coding=utf-8
 # Calculates the flops and params of pre-trained models WITHOUT DeepSpeed.
-# Usage: python cal_flops.py --model_name_or_path path_to_model --batch_size 1 --seq_length 512
+# python cal_flops.py --model_name_or_path path_to_model --batch_size 1 --seq_length 512
+
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "../src"))
 
 import fire
 import torch

@@ -1,7 +1,5 @@
 # Converts the Baichuan2-7B model in the same format as LLaMA2-7B.
-# Usage: python llamafy_baichuan2.py --input_dir input --output_dir output --shard_size 10GB
-# Inspired by: https://huggingface.co/fireballoon/baichuan-llama-7b/blob/main/convert_baichuan_to_llama.py
-# Converted model: https://huggingface.co/hiyouga/Baichuan2-7B-Base-LLaMAfied
+# python llamafy_baichuan2.py --input_dir input --output_dir output --shard_size 10GB
 
 import os
 import fire

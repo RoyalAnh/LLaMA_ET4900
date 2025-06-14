@@ -3,39 +3,37 @@
 
 ## LLaMA Board: A One-stop Web UI for Getting Started with LLaMA Factory
 
-Launch **LLaMA Board** via `CUDA_VISIBLE_DEVICES=0 python src/train_web.py`. (multiple GPUs are not supported yet)
+Launch **LLaMA Board** via `CUDA_VISIBLE_DEVICES=0 python src/train_web.py`. 
 
-Here is an example of altering the self-cognition of an instruction-tuned language model within 10 minutes on a single GPU.
+An example of altering the self-cognition of an instruction-tuned language model within 10 minutes on a single GPU.
 
 https://github.com/hiyouga/LLaMA-Factory/assets/16256802/6ba60acc-e2e2-4bec-b846-2d88920d5ba1
 
 ## Changelog
 
-[23/10/21] We supported **[NEFTune](https://arxiv.org/abs/2310.05914)** trick for fine-tuning. Try `--neft_alpha` argument to activate NEFTune, e.g., `--neft_alpha 5`.
+**[NEFTune](https://arxiv.org/abs/2310.05914)** trick for fine-tuning. Try `--neft_alpha` argument to activate NEFTune, e.g., `--neft_alpha 5`.
 
-[23/09/27] We supported **$S^2$-Attn** proposed by [LongLoRA](https://github.com/dvlab-research/LongLoRA) for the LLaMA models. Try `--shift_attn` argument to enable shift short attention.
+**$S^2$-Attn** proposed by [LongLoRA](https://github.com/dvlab-research/LongLoRA) for the LLaMA models. Try `--shift_attn` argument to enable shift short attention.
 
-[23/09/23] We integrated MMLU, C-Eval and CMMLU benchmarks in this repo. See [this example](#evaluation) to evaluate your models.
+integrated MMLU, C-Eval and CMMLU benchmarks in this repo. See [this example](#evaluation) to evaluate your models.
 
-[23/09/10] We supported using **[FlashAttention-2](https://github.com/Dao-AILab/flash-attention)** for the LLaMA models. Try `--flash_attn` argument to enable FlashAttention-2 if you are using RTX4090, A100 or H100 GPUs.
+using **[FlashAttention-2](https://github.com/Dao-AILab/flash-attention)** for the LLaMA models. Try `--flash_attn` argument to enable FlashAttention-2 if you are using RTX4090, A100 or H100 GPUs.
 
-[23/08/12] We supported **RoPE scaling** to extend the context length of the LLaMA models. Try `--rope_scaling linear` argument in training and `--rope_scaling dynamic` argument at inference to extrapolate the position embeddings.
+**RoPE scaling** to extend the context length of the LLaMA models. Try `--rope_scaling linear` argument in training and `--rope_scaling dynamic` argument at inference to extrapolate the position embeddings.
 
-[23/08/11] We supported **[DPO training](https://arxiv.org/abs/2305.18290)** for instruction-tuned models. See [this example](#dpo-training) to train your models.
+**[DPO training](https://arxiv.org/abs/2305.18290)** for instruction-tuned models. See [this example](#dpo-training) to train your models.
 
-[23/07/31] We supported **dataset streaming**. Try `--streaming` and `--max_steps 10000` arguments to load your dataset in streaming mode.
+**dataset streaming**. Try `--streaming` and `--max_steps 10000` arguments to load your dataset in streaming mode.
 
-[23/07/29] We released two instruction-tuned 13B models at Hugging Face. See these Hugging Face Repos ([LLaMA-2](https://huggingface.co/hiyouga/Llama-2-Chinese-13b-chat) / [Baichuan](https://huggingface.co/hiyouga/Baichuan-13B-sft)) for details.
+**all-in-one Web UI** for training, evaluation and inference. Try `train_web.py` to fine-tune models in your Web browser. 
 
-[23/07/18] We developed an **all-in-one Web UI** for training, evaluation and inference. Try `train_web.py` to fine-tune models in your Web browser. Thank [@KanadeSiina](https://github.com/KanadeSiina) and [@codemayq](https://github.com/codemayq) for their efforts in the development.
+**[FastEdit](https://github.com/hiyouga/FastEdit)** ⚡🩹, an easy-to-use package for editing the factual knowledge of large language models efficiently.
 
-[23/07/09] We released **[FastEdit](https://github.com/hiyouga/FastEdit)** ⚡🩹, an easy-to-use package for editing the factual knowledge of large language models efficiently. Please follow [FastEdit](https://github.com/hiyouga/FastEdit) if you are interested.
+**reproducible example** of training a chat model using instruction-following datasets, [Baichuan-7B-sft](https://huggingface.co/hiyouga/Baichuan-7B-sft) 
 
-[23/06/29] We provided a **reproducible example** of training a chat model using instruction-following datasets, see [Baichuan-7B-sft](https://huggingface.co/hiyouga/Baichuan-7B-sft) for details.
+[demo API](src/api_demo.py) with the [OpenAI's](https://platform.openai.com/docs/api-reference/chat) format where you can insert the fine-tuned model in **arbitrary ChatGPT-based applications**.
 
-[23/06/22] We aligned the [demo API](src/api_demo.py) with the [OpenAI's](https://platform.openai.com/docs/api-reference/chat) format where you can insert the fine-tuned model in **arbitrary ChatGPT-based applications**.
-
-[23/06/03] We supported quantized training and inference (aka **[QLoRA](https://github.com/artidoro/qlora)**). Try `--quantization_bit 4/8` argument to work with quantized models.
+quantized training and inference (aka **[QLoRA](https://github.com/artidoro/qlora)**). Try `--quantization_bit 4/8` argument to work with quantized models.
 
 ## Supported Models
 
@@ -60,7 +58,7 @@ https://github.com/hiyouga/LLaMA-Factory/assets/16256802/6ba60acc-e2e2-4bec-b846
 >
 > For the "base" models, the `--template` argument can be chosen from `default`, `alpaca`, `vicuna` etc. But make sure to use the **corresponding template** for the "chat" models.
 
-Please refer to [template.py](src/llmtuner/extras/template.py) for a full list of models we supported.
+[template.py](src/llmtuner/extras/template.py) for a full list of models.
 
 ## Supported Training Approaches
 
@@ -83,9 +81,7 @@ Please refer to [template.py](src/llmtuner/extras/template.py) for a full list o
 - [RefinedWeb (en)](https://huggingface.co/datasets/tiiuae/falcon-refinedweb)
 - [RedPajama V2 (en)](https://huggingface.co/datasets/togethercomputer/RedPajama-Data-V2)
 - [Wikipedia (en)](https://huggingface.co/datasets/olm/olm-wikipedia-20221220)
-- [Wikipedia (zh)](https://huggingface.co/datasets/pleisto/wikipedia-cn-20230720-filtered)
 - [Pile (en)](https://huggingface.co/datasets/EleutherAI/pile)
-- [SkyPile (zh)](https://huggingface.co/datasets/Skywork/SkyPile-150B)
 - [The Stack (en)](https://huggingface.co/datasets/bigcode/the-stack)
 - [StarCoder (en)](https://huggingface.co/datasets/bigcode/starcoderdata)
 
@@ -94,28 +90,15 @@ Please refer to [template.py](src/llmtuner/extras/template.py) for a full list o
 <details><summary>Supervised fine-tuning datasets</summary>
 
 - [Stanford Alpaca (en)](https://github.com/tatsu-lab/stanford_alpaca)
-- [Stanford Alpaca (zh)](https://github.com/ymcui/Chinese-LLaMA-Alpaca)
 - [GPT-4 Generated Data (en&zh)](https://github.com/Instruction-Tuning-with-GPT-4/GPT-4-LLM)
-- [Self-cognition (zh)](data/self_cognition.json)
 - [Open Assistant (multilingual)](https://huggingface.co/datasets/OpenAssistant/oasst1)
-- [ShareGPT (zh)](https://huggingface.co/datasets/QingyiSi/Alpaca-CoT/tree/main/Chinese-instruction-collection)
 - [Guanaco Dataset (multilingual)](https://huggingface.co/datasets/JosephusCheung/GuanacoDataset)
-- [BELLE 2M (zh)](https://huggingface.co/datasets/BelleGroup/train_2M_CN)
-- [BELLE 1M (zh)](https://huggingface.co/datasets/BelleGroup/train_1M_CN)
-- [BELLE 0.5M (zh)](https://huggingface.co/datasets/BelleGroup/train_0.5M_CN)
-- [BELLE Dialogue 0.4M (zh)](https://huggingface.co/datasets/BelleGroup/generated_chat_0.4M)
-- [BELLE School Math 0.25M (zh)](https://huggingface.co/datasets/BelleGroup/school_math_0.25M)
-- [BELLE Multiturn Chat 0.8M (zh)](https://huggingface.co/datasets/BelleGroup/multiturn_chat_0.8M)
 - [UltraChat (en)](https://github.com/thunlp/UltraChat)
 - [LIMA (en)](https://huggingface.co/datasets/GAIR/lima)
 - [OpenPlatypus (en)](https://huggingface.co/datasets/garage-bAInd/Open-Platypus)
 - [CodeAlpaca 20k (en)](https://huggingface.co/datasets/sahil2801/CodeAlpaca-20k)
 - [Alpaca CoT (multilingual)](https://huggingface.co/datasets/QingyiSi/Alpaca-CoT)
 - [MathInstruct (en)](https://huggingface.co/datasets/TIGER-Lab/MathInstruct)
-- [Firefly 1.1M (zh)](https://huggingface.co/datasets/YeungNLP/firefly-train-1.1M)
-- [Web QA (zh)](https://huggingface.co/datasets/suolyer/webqa)
-- [WebNovel (zh)](https://huggingface.co/datasets/zxbsmk/webnovel_cn)
-- [Ad Gen (zh)](https://huggingface.co/datasets/HasturOfficial/adgen)
 - [ShareGPT Hyperfiltered (en)](https://huggingface.co/datasets/totally-not-an-llm/sharegpt-hyperfiltered-3k)
 - [ShareGPT4 (en&zh)](https://huggingface.co/datasets/shibing624/sharegpt_gpt4)
 - [UltraChat 200k (en)](https://huggingface.co/datasets/HuggingFaceH4/ultrachat_200k)
@@ -133,9 +116,9 @@ Please refer to [template.py](src/llmtuner/extras/template.py) for a full list o
 
 </details>
 
-Please refer to [data/README.md](data/README.md) for details.
+[data/README.md](data/README.md) for details.
 
-Some datasets require confirmation before using them, so we recommend logging in with your Hugging Face account using these commands.
+Some datasets require confirmation before using them, log in Hugging Face account using these commands.
 
 ```bash
 pip install --upgrade huggingface_hub
@@ -144,35 +127,25 @@ huggingface-cli login
 
 ## Requirement
 
-- Python 3.8+ and PyTorch 1.13.1+
+- Python 3.10 and PyTorch 1.13.1+
 - 🤗Transformers, Datasets, Accelerate, PEFT and TRL
 - sentencepiece, protobuf and tiktoken
 - fire, jieba, rouge-chinese and nltk (used at evaluation and predict)
 - gradio and matplotlib (used in web UI)
 - uvicorn, fastapi and sse-starlette (used in API)
 
-And **powerful GPUs**!
-
 ## Getting Started
 
 ### Data Preparation (optional)
 
-Please refer to [data/README.md](data/README.md) for checking the details about the format of dataset files. You can either use a single `.json` file or a [dataset loading script](https://huggingface.co/docs/datasets/dataset_script) with multiple files to create a custom dataset.
+Please refer to [data/README.md](data/README.md) for checking the details about the format of dataset files. I can use a single `.json` file or a [dataset loading script](https://huggingface.co/docs/datasets/dataset_script) with multiple files to create a custom dataset.
 
 > [!NOTE]
-> Please update `data/dataset_info.json` to use your custom dataset. About the format of this file, please refer to `data/README.md`.
+> update `data/dataset_info.json` to use custom dataset. About the format of this file, refer to `data/README.md`.
 
 ### Dependence Installation (optional)
 
-```bash
-git clone https://github.com/hiyouga/LLaMA-Factory.git
-conda create -n llama_factory python=3.10
-conda activate llama_factory
-cd LLaMA-Factory
-pip install -r requirements.txt
-```
-
-If you want to enable the quantized LoRA (QLoRA) on the Windows platform, you will be required to install a pre-built version of `bitsandbytes` library, which supports CUDA 11.1 to 12.1.
+Enable the quantized LoRA (QLoRA) on the Windows platform, you will be required to install a pre-built version of `bitsandbytes` library, which supports CUDA 11.1 to 12.1.
 
 ```bash
 pip install https://github.com/jllllll/bitsandbytes-windows-webui/releases/download/wheels/bitsandbytes-0.39.1-py3-none-win_amd64.whl
@@ -453,38 +426,4 @@ CUDA_VISIBLE_DEVICES=0 python src/train_bash.py \
 ```
 
 > [!NOTE]
-> We recommend using `--per_device_eval_batch_size=1` and `--max_target_length 128` at 4/8-bit predict.
-
-## Projects using LLaMA Factory
-
-- **[StarWhisper](https://github.com/Yu-Yang-Li/StarWhisper)**: A large language model for Astronomy, based on ChatGLM2-6B and Qwen-14B.
-- **[DISC-LawLLM](https://github.com/FudanDISC/DISC-LawLLM)**: A large language model specialized in Chinese legal domain, based on Baichuan-13B, is capable of retrieving and reasoning on legal knowledge.
-- **[Sunsimiao](https://github.com/thomas-yanxin/Sunsimiao)**: A large language model specialized in Chinese medical domain, based on Baichuan-7B and ChatGLM-6B.
-- **[CareGPT](https://github.com/WangRongsheng/CareGPT)**: A series of large language models for Chinese medical domain, based on LLaMA2-7B and Baichuan-13B.
-
-## License
-
-This repository is licensed under the [Apache-2.0 License](LICENSE).
-
-Please follow the model licenses to use the corresponding model weights: [Baichuan](https://huggingface.co/baichuan-inc/Baichuan-13B-Base/resolve/main/Community%20License%20for%20Baichuan-13B%20Model.pdf) / [Baichuan2](https://huggingface.co/baichuan-inc/Baichuan2-13B-Chat/resolve/main/Community%20License%20for%20Baichuan2%20Model.pdf) / [BLOOM](https://huggingface.co/spaces/bigscience/license) / [ChatGLM3](https://github.com/THUDM/ChatGLM3/blob/main/MODEL_LICENSE) / [Falcon](https://huggingface.co/tiiuae/falcon-180B/blob/main/LICENSE.txt) / [InternLM](https://github.com/InternLM/InternLM#license) / [LLaMA](https://github.com/facebookresearch/llama/blob/main/MODEL_CARD.md) / [LLaMA-2](https://ai.meta.com/llama/license/) / [Mistral](LICENSE) / [Phi-1.5](https://huggingface.co/microsoft/phi-1_5/resolve/main/Research%20License.docx) / [Qwen](https://huggingface.co/Qwen/Qwen-7B-Chat/blob/main/LICENSE) / [XVERSE](https://github.com/xverse-ai/XVERSE-13B/blob/main/MODEL_LICENSE.pdf)
-
-## Citation
-
-If this work is helpful, please kindly cite as:
-
-```bibtex
-@Misc{llama-factory,
-  title = {LLaMA Factory},
-  author = {hiyouga},
-  howpublished = {\url{https://github.com/hiyouga/LLaMA-Factory}},
-  year = {2023}
-}
-```
-
-## Acknowledgement
-
-This repo benefits from [PEFT](https://github.com/huggingface/peft), [QLoRA](https://github.com/artidoro/qlora) and [FastChat](https://github.com/lm-sys/FastChat). Thanks for their wonderful works.
-
-## Star History
-
-![Star History Chart](https://api.star-history.com/svg?repos=hiyouga/LLaMA-Factory&type=Date)
+> Should using `--per_device_eval_batch_size=1` and `--max_target_length 128` at 4/8-bit predict.
